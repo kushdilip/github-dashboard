@@ -1,4 +1,3 @@
-
 <h3>Organisations for  {{session.currentUser.username}}</h3>
 
 <ul>
@@ -12,6 +11,20 @@
     </li>
   {{/each}}
 </ul>
+<hr>
+
+<h3>Render contribution graph for top 2 repo</h3>
+<button {{action 'getRepoStat'}}>Draw Graph</button>
+
+<ol>
+  {{#each contributions as |contrib|}}
+    <li>
+      {{#each contrib as |c|}}
+        [{{c.author.login}}: {{c.total}}] &nbsp;
+      {{/each}}
+    </li>
+  {{/each}}
+</ol>
 
 <hr>
 

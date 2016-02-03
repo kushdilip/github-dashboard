@@ -30,6 +30,23 @@ export default Ember.Route.extend({
         this.controller.set('members', hash.members);
         this.controller.set('repos', hash.repos);
       });
+    },
+    
+    getRepoStat(){
+      let repos = this.controller.get('repos');
+      if (!Ember.isArray(repos)) {
+        return;
+      }
+      
+      let topRepos = repos.slice(0,2);
+      
+      let url = this.get('url');
+      let accessToken = this.get('accessToken');
+      
+      let urls = topRepos.map(repo => `${url}/repos/${repo.full_name}/stats/contributors?access_token=${accessToken}`);
+      let fns = urls.map(url => Ember.$.ajax({url: url}));
+      
+      Ember.RSVP.all(fns).then(contributions => this.controller.set('contributions', contributions));
     }
   }
 });
