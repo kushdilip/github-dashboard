@@ -16,7 +16,7 @@ export default Ember.Route.extend({
         Ember.$('#signin-modal-back').one('click', () => {
           this.controller.set('signingIn',false);
         });
-        this.get("session").open("firebase", { provider: provider}).then(() => {
+        this.get("session").open("firebase", { provider: provider, settings: {scope:'read:org'}}).then(() => {
           this.controller.set('signingIn',false);
           this.transitionTo('home');
         },

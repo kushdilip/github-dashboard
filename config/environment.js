@@ -22,12 +22,7 @@ module.exports = function(environment) {
     torii: {
       // a 'session' property will be injected on routes and controllers
       sessionServiceName: 'session',
-      remoteServiceName: 'iframe',
-      providers: {
-        'github': {
-          scope: 'read:org' 
-        }
-      }
+      remoteServiceName: 'iframe'
     }
   };
 
