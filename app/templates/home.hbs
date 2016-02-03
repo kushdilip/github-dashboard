@@ -1,0 +1,10 @@
+
+<h3>Organisations for  {{session.currentUser.username}}</h3>
+
+<ul>
+  {{#each content as |org|}}
+    <li>
+      <a href="#" {{action 'getMembers' org=org.login on="click"}} >{{org.login}}</a>  
+    </li>
+  {{/each}}
+</ul>
