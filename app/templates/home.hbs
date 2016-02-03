@@ -17,6 +17,15 @@
 <button {{action 'getRepoStat'}}>Draw Graph</button>
 
 <ol>
+  {{#each chartContent as |chart|}}
+    <li>
+      {{high-charts content=chart.chartData chartOptions=chart.chartOptions}}
+    </li>
+  {{/each}}
+</ol>
+<hr>
+
+<ol>
   {{#each contributions as |contrib|}}
     <li>
       {{#each contrib as |c|}}

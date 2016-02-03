@@ -38,7 +38,7 @@ export default Ember.Route.extend({
         return;
       }
       
-      let topRepos = repos.slice(0,2);
+      let topRepos = repos.slice(1,3);
       
       let url = this.get('url');
       let accessToken = this.get('accessToken');
