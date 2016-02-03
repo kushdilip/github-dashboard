@@ -2,21 +2,19 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   beforeModel: function() {
-    this.get("session").fetch().catch(function() {
-      console.log('No session');
+    return this.get('session').fetch().then(function() {
+      console.log('session fetched');
+    }, function() {
+      console.log('no session to fetch');
     });
   },
   actions: {
-    signIn: function(provider) {
-      this.controller.set('error', null);
-      this.get("session").open("firebase", { provider: provider}).then(() => {},
-      (error) => {
-        this.controller.set('error', 'Could not sign you in: '+error.message);
-      });
-    },
-
     logout: function() {
       this.get("session").close();
+      this.transitionTo('login');
+    },
+    accessDenied: function() {
+      this.transitionTo('login');
     }
   }
 });
