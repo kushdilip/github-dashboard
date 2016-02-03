@@ -4,7 +4,25 @@
 <ul>
   {{#each content as |org|}}
     <li>
-      <a href="#" {{action 'getMembers' org=org.login on="click"}} >{{org.login}}</a>  
+      <a href="#" {{action 'getMemberAndRepos' org.login on="click"}} >
+        {{org.login}}
+      </a>
+      : {{members.length}} members
+      : {{repos.length}} repos
     </li>
   {{/each}}
 </ul>
+
+<hr>
+
+<ol>
+  {{#each members as |member|}}
+    <li><a href="#" >{{member.login}}</a></li>
+  {{/each}}
+</ol>
+
+<ol>
+  {{#each repos as |repo|}}
+    <li><a href="#" >{{repo.name}}</a></li>
+  {{/each}}
+</ol>
