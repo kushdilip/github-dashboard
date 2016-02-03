@@ -1,2 +1,12 @@
 <h1>Github Dashboard</h1>
+{{#if session.isWorking}}
+  One sec while we get you signed in...
+{{else if session.isAuthenticated}}
+  {{session.currentUser.username}}
+  <button {{action 'logout'}}>Logout</button>
+  {{outlet}}
+{{else}}
+  {{error}}
+  <button {{action "signIn" "github"}}>Sign in with github</button>
+{{/if}}
 {{outlet}}
