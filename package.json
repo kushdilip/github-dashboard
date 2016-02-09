@@ -49,6 +49,7 @@
     "ember-export-application-global": "^1.0.4",
     "ember-highcharts": "0.3.0",
     "ember-paper": "0.2.11",
+    "ember-power-select": "0.8.6",
     "emberfire": "1.6.4",
     "gulp": "3.9.0",
     "gulp-gh-pages": "0.5.4",

@@ -1,1 +1,15 @@
-ORGANISATION
+{{#paper-card}}
+  {{#power-select-multiple
+    options=content
+    selected=repo
+    onchange=(action (mut repo))
+    as |repo|
+  }}
+    {{repo.name}}
+  {{/power-select-multiple}}
+  
+  {{#paper-card-content}}
+  {{/paper-card-content}}
+  <div class="md-actions" layout="row" layout-align="end center">
+  </div>
+{{/paper-card}}
