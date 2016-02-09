@@ -24,10 +24,27 @@
                 {{#paper-button target=toggle action="toggleMenu" icon-button=true}}{{paper-icon "menu"}}{{/paper-button}}
               {{/paper-sidenav-toggle}}
               {{!-- <span class="md-breadcrumb-page">Title</span> --}}
-              <span>{{session.currentUser.username}}</span>
-              <button {{action 'logout'}}>Logout</button>
+              
+              {{#paper-menu as |menu|}}
+                {{#paper-button target=menu action="toggleMenu" icon-button=false}}
+                  {{session.currentUser.username}}{{paper-icon "arrow-drop-down" class="md-menu-origin"}} 
+                {{/paper-button}}
+              {{else}}
+                {{#paper-menu-item action="logout"}}
+                  <span>Logout</span>
+                {{/paper-menu-item}}
+              {{/paper-menu}}
             {{else}}
-              <button {{action "signIn" "github"}}>Sign in with github</button>
+              {{#paper-toolbar}}
+                <div class="md-toolbar-tools">
+                  <div class="logo">
+                    <strong>Github Dashboard</strong>
+                  </div>
+                  {{#paper-button raised=true action='signIn' param='github'}}
+                    Signin with Github
+                  {{/paper-button}}
+                </div>
+              {{/paper-toolbar}}
             {{/if}}
           </div>
         {{/paper-toolbar}}
