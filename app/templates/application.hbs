@@ -1,38 +1,39 @@
-{{#if session.isAuthenticated}}
-  {{#paper-nav-container}}
-    {{#paper-sidenav class="md-sidenav-left md-whiteframe-z2" locked-open="gt-sm"}}
-      {{#paper-toolbar}}
-        <div class="md-toolbar-tools">
-          <div class="logo">
-            <strong>Github Dashboard</strong>
+{{#paper-nav-container}}
+    {{#if session.isAuthenticated}}
+      {{#paper-sidenav class="md-sidenav-left md-whiteframe-z2" locked-open="gt-sm"}}
+        {{#paper-toolbar}}
+          <div class="md-toolbar-tools">
+            <div class="logo">
+              <strong>Github Dashboard</strong>
+            </div>
           </div>
-        </div>
-      {{/paper-toolbar}}
+        {{/paper-toolbar}}
 
-      {{#paper-content}}
-        {{#paper-list}}
-          {{#paper-item action="transitionTo" param="home"}}Home{{/paper-item}}
-        {{/paper-list}}
-      {{/paper-content}}
-    {{/paper-sidenav}}
-
+        {{#paper-content}}
+          {{#paper-list}}
+            {{#paper-item action="transitionTo" param="home"}}Home{{/paper-item}}
+          {{/paper-list}}
+        {{/paper-content}}
+      {{/paper-sidenav}}
+    {{/if}}
     <div layout="column" tabindex="-1" role="main" flex>
-      {{#paper-toolbar}}
-        <div class="md-toolbar-tools">
-          {{#paper-sidenav-toggle as |toggle|}}
-            {{#paper-button target=toggle action="toggleMenu" icon-button=true}}{{paper-icon "menu"}}{{/paper-button}}
-          {{/paper-sidenav-toggle}}
-          {{!-- <span class="md-breadcrumb-page">Title</span> --}}
-          <span>{{session.currentUser.username}}</span>
-          <button {{action 'logout'}}>Logout</button>
-        </div>
-      {{/paper-toolbar}}
+        {{#paper-toolbar}}
+          <div class="md-toolbar-tools">
+            {{#if session.isAuthenticated}}
+              {{#paper-sidenav-toggle as |toggle|}}
+                {{#paper-button target=toggle action="toggleMenu" icon-button=true}}{{paper-icon "menu"}}{{/paper-button}}
+              {{/paper-sidenav-toggle}}
+              {{!-- <span class="md-breadcrumb-page">Title</span> --}}
+              <span>{{session.currentUser.username}}</span>
+              <button {{action 'logout'}}>Logout</button>
+            {{else}}
+              <button {{action "signIn" "github"}}>Sign in with github</button>
+            {{/if}}
+          </div>
+        {{/paper-toolbar}}
 
       {{#paper-content class="md-padding"}}
         {{outlet}}
       {{/paper-content}}
     </div>
-    {{/paper-nav-container}}
-{{else}}
-  {{outlet}}
-{{/if}}
+{{/paper-nav-container}}
