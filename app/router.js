@@ -7,6 +7,8 @@ const Router = Ember.Router.extend({
 
 Router.map(function() {
   this.authenticatedRoute('home', {path: '/home'});
+  this.authenticatedRoute('org', {path: '/orgs/:org'});
+  this.authenticatedRoute('repo', {path: '/repos/:repo'});
   this.route('login');
 });
 

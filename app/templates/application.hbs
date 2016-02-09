@@ -11,7 +11,24 @@
 
         {{#paper-content}}
           {{#paper-list}}
-            {{#paper-item action="transitionTo" param="home"}}Home{{/paper-item}}
+            {{#paper-item action="transitionToHome" }}Home{{/paper-item}}
+            {{paper-divider }}
+          
+            {{#each orgs as |org|}}
+              {{#paper-item action="transitionToOrg" param=org.login}}
+                <strong>{{org.login}}</strong>
+              {{/paper-item}}
+            {{/each}}
+            
+            {{paper-divider }}
+            
+            {{#each repos as |repo|}}
+              {{#paper-item action="transitionToRepo" param=repo.name}}
+                {{repo.name}}
+              {{/paper-item}}
+              {{paper-divider }}
+            {{/each}}
+          
           {{/paper-list}}
         {{/paper-content}}
       {{/paper-sidenav}}
