@@ -1,5 +1,7 @@
 {{#paper-card}}
   {{#power-select-multiple
+    renderInPlace=true
+    searchField="name"
     options=content
     selected=repo
     onchange=(action (mut repo))
@@ -11,17 +13,13 @@
   <button {{action 'getRepoStat'}}>Draw Graph</button>
   
   {{#paper-card-content}}
-    {{#paper-grid-list md-cols-sm="1" md-cols-md="2" md-cols-gt-md="6"
-      md-row-height-gt-md="1:1" md-row-height="2:2"
-      md-gutter="12px" md-gutter-gt-sm="8px"}}
-        {{#each chartContent as |chart|}}
-          {{#paper-grid-tile md-rowspan="2" md-colspan="2" md-colspan-sm="1"}}
-            <div>
-              {{high-charts content=chart.chartData chartOptions=chart.chartOptions}}
-            </div>
-          {{/paper-grid-tile}}
-        {{/each}}
-    {{/paper-grid-list}}
+    <div class="row">
+      {{#each contributions as |contrib|}}
+        <div class="col-md-6">
+          {{contribution-pie-chart content=contrib}}
+        </div>
+      {{/each}}
+    </div>
   {{/paper-card-content}}
   <div class="md-actions" layout="row" layout-align="end center">
   </div>
