@@ -23,7 +23,17 @@ module.exports = function(environment) {
       // a 'session' property will be injected on routes and controllers
       sessionServiceName: 'session',
       remoteServiceName: 'iframe'
-    }
+    },
+    
+    metricsAdapters: [
+      {
+        name: 'GoogleAnalytics',
+        environments: ['production'],
+        config: {
+          id: 'UA-47054792-4'
+        }
+      }
+    ]
   };
 
   if (environment === 'development') {
