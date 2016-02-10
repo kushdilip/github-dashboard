@@ -7,6 +7,7 @@ export default Ember.Controller.extend({
       let contributions = this.get('contributions') || [];
       
       return contributions.map(contrib => {
+        contrib = Ember.isArray(contrib) ? contrib : [];
         return {
           chartData: [{
             name: 'Contribution',
