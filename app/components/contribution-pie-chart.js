@@ -4,7 +4,8 @@ export default Ember.Component.extend({
   chartContent: Ember.computed('content', {
     get(){
       let chartOptions = Ember.$.extend(true, {}, this.get('chartOptions'));
-      let content = this.get('content') || [];
+      let content = this.get('content');
+      content = Ember.isArray(content) ? content : [];
       
       return {
         chartData: [{
