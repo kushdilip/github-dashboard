@@ -1,5 +1,30 @@
+{{#paper-button raised=true primary=true action="showGroupModal"}}Add Group{{/paper-button}}
+
+{{#if isGroupModal}}
+{{#modal-dialog
+  close="hideGroupModal"
+}}
+  {{paper-input label="Group Name" value=groupName}}
+  
+  {{#power-select-multiple
+    renderInPlace=true
+    searchField="name"
+    options=repos
+    selected=repo
+    onchange=(action (mut repo))
+    as |repo|
+  }}
+    {{repo.name}}
+  {{/power-select-multiple}}
+  
+  Oh hai there!
+{{/modal-dialog}}
+{{/if}}
+
 
 <h3>Organisations for  {{session.currentUser.username}}</h3>
+
+
 
 <ul>
   {{#each content as |org|}}

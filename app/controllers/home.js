@@ -1,12 +1,16 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+  needs: ['application'],
+  repos: Ember.computed.alias('controllers.application.repos'),
+  
   chartContent: Ember.computed('contributions', {
     get(){
       let chartOptions = Ember.$.extend(true, {}, this.get('chartOptions'));
       let contributions = this.get('contributions') || [];
       
       return contributions.map(contrib => {
+        contrib = contrib || [];
         return {
           chartData: [{
             name: 'Contribution',
@@ -55,6 +59,15 @@ export default Ember.Controller.extend({
       title: {
           text: ''
       }
+    }
+  },
+  
+  actions: {
+    showGroupModal(){
+      this.set('isGroupModal', true);
+    },
+    hideGroupModal(){
+      this.set('isGroupModal', false);
     }
   }
 });

@@ -1,6 +1,9 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+  accessToken: Ember.computed.alias('session.currentUser.accessToken'),
+  url: 'https://api.github.com',
+  
   actions: {
     getRepoStat(){
       let repos = this.get('repo');
